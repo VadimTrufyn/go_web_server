@@ -21,6 +21,8 @@ FROM alpine:latest
 
 # Create a non-root user and group
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+# Install curl
+RUN apk add --no-cache curl
 
 WORKDIR /home/appuser
 
