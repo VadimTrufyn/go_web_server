@@ -35,4 +35,4 @@ log "Waiting for 30 seconds for the container to start..."
 sleep 30
 
 # Перевірка стану контейнера
-./healthcheck.sh --container ${CONTAINER_NAME} --host-port ${HOST_PORT}
+./scripts/healthcheck.sh --container ${CONTAINER_NAME} --host-port ${HOST_PORT}
