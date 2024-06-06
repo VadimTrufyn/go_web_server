@@ -97,14 +97,20 @@ Expected response:
 ```
 
 ## Services Overview
- - Go Web Server
-The Go web server is a simple application that uses the Gin framework to provide an HTTP endpoint for health checks. It listens on port 8080 and responds with a JSON message when accessed.
+- Go Web Server: Compiled using a multi-stage Docker build process, exposing port 8080, and running as a non-root user for security.
+- NGINX Reverse Proxy: Configured to route traffic to the Go web server, with custom configurations and health checks to ensure reliability.
+- Automation Scripts: Scripts provided to automate the building, running, and health checking of the Docker containers, making the setup process straightforward and repeatable.
 
-Endpoint:
+## Key Features
+- Multi-Stage Build: The Dockerfile uses multi-stage builds to keep the final image lightweight. The first stage compiles the Go application, and the second stage creates a minimal production image.
 
-/ping: Returns a JSON response with {"message":"pong"}.
-NGINX Reverse Proxy
-NGINX is configured as a reverse proxy to route incoming HTTP requests to the Go web server. It listens on port 80 and forwards requests to the Go server running on port 8080.
+
+- Non-Root User: Enhances security by running the application as a non-root user.
+
+-Health Checks: Docker Compose health checks ensure that the Go web server is up and running before NGINX starts proxying requests.
+
+- Custom NGINX Configuration: The custom nginx.conf file configures NGINX to proxy requests to the Go web server and handle health check requests.
+
 
 
   
